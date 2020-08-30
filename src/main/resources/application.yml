@@ -1,0 +1,26 @@
+server:
+    port: 8080
+
+spring:
+    profiles: default
+    jpa:
+        properties:
+            hibernate:
+                show_sql: true
+                format_sql: true
+    cloud:
+        stream:
+            kafka:
+                binder:
+                    brokers: localhost:9092
+                bindings:
+                    input:
+                        destination: booking        // kafka topic
+                        group: booking
+                        contentType: application/json
+                        binder: kafka
+                    output:
+                        destination: booking        // kafka topic
+                        group: booking
+                        contentType: application/json
+                        binder: kafka
